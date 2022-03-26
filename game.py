@@ -40,7 +40,6 @@ def winorlose(status):
 		#this might generate a bug that we need to fix later
 		choice = input("Y / N?")
 
-
 # player_choice == False
 while player_choice is False:
 	print("===========*/ RPS GAME */===========")
@@ -51,8 +50,14 @@ while player_choice is False:
 	# player_choice = choices[1]
 	# print("index 1 in the choice array is " + player_choice + ", which is paper")
 
+	print("choose your weapon!! or type quit to exit game\n")
+
 	player_choice = input("choose rock, paper, or scissors: \n")
 	#player_choice now equals TRUE -> because it has a value
+
+	if player_choice == "quit":
+		print("youchose to quit")
+		exit()
 
 	print("user chose: " + player_choice)
 
@@ -105,7 +110,6 @@ while player_choice is False:
 	if computer_lives == 0:
 		winorlose("won")
 		
-
 	print("Player lives:", player_lives)
 	print("Computer lives:", computer_lives)
 
