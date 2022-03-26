@@ -1,33 +1,7 @@
-# important packages to extend python (just like we extend sublime, atom, or VScode)
 from random import randint
 
 # re-import game variables
-from gameComponents import gamevariables
-
-# [] -> this is an array
-# name = [value1, value2, value3]
-# an array is a special type of container that can hold multiple items
-# arrays are indexed (their contents are assigned a number)
-# the index always starts at 0
-
-#define a win or lose function
-def winorlose(status):
-	#version 1 of function
-	# print("inside winorlose funtion; status is: ", status)
-	print("you", status, "! would you like to play again?")
-	choices = input("Y / N?")
-
-	if choices == "N" or choices == "n":
-		print("you chose to quit! better luck next time!")
-		exit()
-	elif choices == "Y" or choices == "y":
-		#reset the player lives and computer lives
-		gamevariables.player_lives = gamevariables.total_lives
-		gamevariables.computer_lives = gamevariables.total_lives
-	else:
-		print("please make a valid choice - Y or N?")
-		#this might generate a bug that we need to fix later
-		choice = input("Y / N?")
+from gameComponents import gamevariables, winlose
 
 # player_choice == False
 while gamevariables.player_choice is False:
@@ -35,7 +9,7 @@ while gamevariables.player_choice is False:
 	print("computer lives:", gamevariables.computer_lives, "/", gamevariables.total_lives)
 	print("player lives:", gamevariables.player_lives, "/", gamevariables.total_lives)
 	print("=====================================")
-	print("choose you weapon!! or type quit to exit game")
+	print("choose your weapon!! or type quit to exit game")
 	gamevariables.player_choice = input("choose rock, paper, or scissors: \n")
 	#player_choice now equals TRUE -> because it has a value	
 
@@ -50,7 +24,6 @@ while gamevariables.player_choice is False:
 
 	if gamevariables.computer_choice == gamevariables.player_choice:
 		print("tie")
-
 	elif gamevariables.computer_choice == "rock":
 		if gamevariables.player_choice == "scissors":
 			print("you lose! player lives: ", gamevariables.player_lives)
@@ -61,7 +34,6 @@ while gamevariables.player_choice is False:
 		else:
 			print("you win! player lives: ", gamevariables.player_lives)
 			gamevariables.computer_lives -= 1
-
 	elif gamevariables.computer_choice == "paper":
 		if gamevariables.player_choice == "scissors":
 			print("you lose! player lives: ", gamevariables.player_lives)
@@ -69,7 +41,6 @@ while gamevariables.player_choice is False:
 		else:
 			print("you win!")
 			gamevariables.computer_lives -= 1
-
 	elif gamevariables.computer_choice == "scissors":
 		if gamevariables.player_choice == "paper":
 			print("you lose! player lives: ", gamevariables.player_lives)
@@ -77,7 +48,6 @@ while gamevariables.player_choice is False:
 		else:
 			print("you win!")
 			gamevariables.computer_lives -= 1
-
 	elif gamevariables.computer_choice == "rock":
 		if gamevariables.player_choice == "paper":
 			print("you lose! player lives: ", gamevariables.player_lives)
@@ -87,10 +57,10 @@ while gamevariables.player_choice is False:
 			gamevariables.computer_lives -= 1
 
 	if gamevariables.player_lives == 0:
-		winorlose("lose")
+		winlose.winorlose("lose")
 		
 	if gamevariables.computer_lives == 0:
-		winorlose("won")
+		winlose.winorlose("won")
 		
 
 	print("Player lives:", gamevariables.player_lives)
